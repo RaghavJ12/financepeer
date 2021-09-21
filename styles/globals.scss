@@ -1,0 +1,133 @@
+html,
+body {
+  height: 100%;
+  padding: 0;
+  margin: 0;
+  font-family: -apple-system, BlinkMacSystemFont, Segoe UI, Roboto, Oxygen, Ubuntu, Cantarell, Fira Sans, Droid Sans,
+    Helvetica Neue, sans-serif;
+}
+
+a {
+  color: inherit;
+  text-decoration: none;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+#s2 {
+  background-color: #004e96;
+  position: absolute;
+  height: 100%;
+  border-radius: 0%;
+}
+
+.side,
+.sidex,
+.us {
+  width: 82px;
+  position: relative;
+  color: white;
+}
+.side:hover,
+.act {
+  color: #004e96;
+  background-color: white;
+}
+.us {
+  top: 40%;
+}
+
+.cbb {
+  border-bottom: 1px solid #d3d3d3;
+  box-shadow: none;
+  border-radius: 0;
+}
+
+.cbt {
+  border-top: 1px solid #d3d3d3;
+  box-shadow: none;
+  display: flex;
+  border-radius: 0;
+}
+
+.redo {
+  border: none;
+  background: none;
+  :hover {
+    cursor: pointer;
+  }
+}
+
+.card {
+  box-shadow: none;
+}
+
+.r1:hover {
+  background-color: rgb(230, 225, 225);
+  border-radius: 50%;
+}
+
+.mid {
+  border-radius: 0;
+  border-left: 1px solid #d3d3d3;
+  border-right: 1px solid #d3d3d3;
+}
+
+#sel {
+  border-radius: 0;
+  box-shadow: none;
+  :hover {
+    cursor: pointer;
+    background-color: rgb(212, 209, 209);
+  }
+}
+
+.dp {
+  border-radius: 50%;
+}
+
+.tg {
+  color: grey;
+}
+
+.vd {
+  color: #004e96;
+  :hover {
+    cursor: pointer;
+  }
+}
+
+.cp {
+  height: 50px;
+  width: 50px;
+  border-radius: 80%;
+}
+
+.ind {
+  color: green;
+  margin-left: -20%;
+  margin-left: -10%;
+}
+
+.wel {
+  height: 100%;
+  width: 100%;
+  position: absolute;
+}
+
+.ht {
+  color: white;
+  margin-top: 5%;
+}
+
+#b1 {
+  color: white;
+  background-color: #004e96;
+}
+
+#b1:hover {
+  color: #004e96;
+  background-color: white;
+}
