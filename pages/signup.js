@@ -3,7 +3,7 @@ import Router from 'next/router'
 import Link from 'next/link';
 import { NextApiRequest, NextApiResponse } from 'next';
 // import sqlite from 'sqlite'
-// import { hash } from 'bcrypt';
+import { hash } from 'bcrypt';
 
 export default function signup() {
     // const db = await sqlite.open('./mydb.sqlite');
@@ -28,7 +28,7 @@ export default function signup() {
     const registerUser = async event => {
         event.preventDefault()
 
-        const res = await fetch('/api/register', {
+        const req = await fetch('/api/register', {
             body: JSON.stringify({
                 n: name,
                 e: email,
@@ -39,9 +39,8 @@ export default function signup() {
             },
             method: 'POST'
         });
-        console.log(res.headers);
-        const result = await res.json();
-        console.log(result.user);
+        const res = await req.json();
+        console.log(res.psw);
     }
     const [name, setname] = useState("");
     const [email, setemail] = useState("");
