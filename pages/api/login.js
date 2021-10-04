@@ -15,7 +15,6 @@ export default async (req, res) => {
         }
         const user = await Account.findOne({email});
         if(!user){
-            console.log(user.name);
             return res.status(404).json({error: 'User not found'});
         }
         const match = await bcrypt.compare(password,user.password);
@@ -23,7 +22,8 @@ export default async (req, res) => {
             jwt.sign({userId:user._id},process.env.JWT_SECRET,{
                 expiresIn:"7d"
             });
-            res.status(201).json({token})
+            const {name,email}=user;
+            res.status(201).json({token,user:{name,email}})
         }else{
             res.status(401).json({error: 'Unauthorized access'})
         }

@@ -26,13 +26,11 @@ export default function Home() {
             M.toast({ html: res.error, classes: "red" });
         }
         else {
-            console.log(res2)
+            console.log(res)
             cookie.set('token', res.token)
             cookie.set('user', res.user)
             router.push('/account')
         }
-        console.log(res);
-
     }
 
     return (
