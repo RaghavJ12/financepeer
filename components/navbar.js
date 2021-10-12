@@ -21,7 +21,6 @@ export default function Navbar() {
                     <div className="navbar-item">
                         <a className="button is-danger" onClick={() => {
                             cookie.remove(token);
-                            console.log(token);
                             router.push('/');
                             user=false
                         }}>

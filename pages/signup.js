@@ -35,7 +35,6 @@ export default function signup() {
             M.toast({ html: res.message, classes: "green" });
             router.push('/login');   
         }
-        console.log(res);
     }
 
     return (

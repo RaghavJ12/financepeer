@@ -28,7 +28,8 @@ export default function Home() {
         else {
             M.toast({ html: res.message, classes: "green" });
             cookie.set('token', res.token)
-            cookie.set('user', res.user)
+            cookie.set('name', res.name)
+            cookie.set('email', res.email)
             router.push('/account')
         }
     }

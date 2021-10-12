@@ -23,12 +23,10 @@ export default async (req, res) => {
                 expiresIn:"7d"
             });
             const {name,email}=user;
-            res.status(201).json({token,user:{name,email},message: 'Login Success'})
+            res.status(201).json({token,name,email,message: 'Login Success'})
         }else{
             res.status(401).json({error: 'Unauthorized access'})
         }
-
-        // res.status(201).json({});
 
     }catch(err){
         console.log(err);

@@ -14,7 +14,6 @@ export default async (req, res) => {
         }
         const user = await Account.findOne({email});
         if(user){
-            console.log(user.name);
             return res.status(402).json({error: 'User email already exists'});
         }
         const newAccount=new Account({
@@ -22,8 +21,6 @@ export default async (req, res) => {
             email,
             password
         }).save()
-
-        console.log(newAccount);
 
         res.status(201).json({message: 'Account created'});
 
