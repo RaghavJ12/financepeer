@@ -19,16 +19,16 @@ export default async (req, res) => {
         }
         const match = await bcrypt.compare(password,user.password);
         if(match){
-            jwt.sign({userId:user._id},process.env.JWT_SECRET,{
+            const token = jwt.sign({userId:user._id},process.env.JWT_SECRET,{
                 expiresIn:"7d"
             });
             const {name,email}=user;
-            res.status(201).json({token,user:{name,email}})
+            res.status(201).json({token,user:{name,email},message: 'Login Success'})
         }else{
             res.status(401).json({error: 'Unauthorized access'})
         }
 
-        res.status(201).json({message: 'Login Success'});
+        // res.status(201).json({});
 
     }catch(err){
         console.log(err);

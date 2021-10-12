@@ -1,31 +1,25 @@
-import React, { useEffect, useState } from 'react';
+import React, { useState } from 'react';
 import Link from 'next/link';
-import baseUrl from '../helpers/baseurl';
 import { useRouter } from 'next/router';
-import bcrypt from 'bcryptjs';
+import cookie from 'js-cookie';
 
-export default function signup() {
-    const router = useRouter();
-    const [name, setname] = useState("");
+export default function Home() {
     const [email, setemail] = useState("");
     const [psw, setpsw] = useState("");
+    const router = useRouter();
 
-    const registerUser = async event => {
-        event.preventDefault()
-
-        // `${baseUrl}/api/register`
-        const req = await fetch('/api/register', {
-            body: JSON.stringify({
-                name,
-                email,
-                password: bcrypt.hashSync(psw, 10)
-            }),
+    const userLogin = async (e) => {
+        e.preventDefault();
+        const req = await fetch('/api/login', {
+            method: 'POST',
             headers: {
-                'Content-Type': 'application/json'
+                'Content-type': 'application/json'
             },
-            method: 'POST'
-        });
-
+            body: JSON.stringify({
+                email,
+                password: psw
+            })
+        })
         const res = await req.json();
 
         if (res.error) {
@@ -33,25 +27,18 @@ export default function signup() {
         }
         else {
             M.toast({ html: res.message, classes: "green" });
-            router.push('/login');   
+            cookie.set('token', res.token)
+            cookie.set('user', res.user)
+            router.push('/account')
         }
-        console.log(res);
     }
 
     return (
         <>
-            
             <div className="container p-6">
                 <div className="columns">
                     <div className="box column is-5 is-offset-3">
-                        <form onSubmit={registerUser}>
-                            <div className="field">
-                                <label className="label">Name</label>
-                                <div className="control">
-                                    <input type="text" placeholder="Name" value={name} onChange={(e) => setname(e.target.value)} />
-                                </div>
-                            </div>
-
+                        <form onSubmit={(e) => userLogin(e)}>
                             <div className="field">
                                 <label className="label">Email</label>
                                 <div className="control has-icons-left has-icons-right">
@@ -65,7 +52,6 @@ export default function signup() {
                                 </div>
                             </div>
 
-
                             <div className="field">
                                 <label className="label">Password</label>
                                 <div className="control">
@@ -77,18 +63,19 @@ export default function signup() {
                                 <div className="column is-3">
                                     <div className="field">
                                         <div className="control">
-                                            <button type="submit" className="button is-primary">Sign up</button>
+                                            <button type="submit" className="button is-primary">Login</button>
                                         </div>
                                     </div>
                                 </div>
                                 <div className="column is-3 is-offset-6 has-text-weight-semibold">
-                                    <Link href="/login">Login</Link>
+                                    <Link href="/signup">Signup</Link>
                                 </div>
                             </div>
                         </form>
                     </div>
                 </div>
             </div>
+
         </>
-    );
+    )
 }
